@@ -1,7 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { login, logout, refreshUser, register } from "./operations";
-// import { fetchContacts, addContact, deleteContact } from "./contactsOps";
-// import { selectFilter } from "../filters/slice";
 
 // patrickimorti@gmail.com
 
@@ -21,7 +19,9 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(register.fulfilled, (state, action) => {
-        console.log(action.payload);
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
       })
       .addCase(register.rejected, (state, action) => {
         console.log(action.payload);

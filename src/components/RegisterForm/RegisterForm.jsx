@@ -1,9 +1,12 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import { Field, Formik, Form } from "formik";
 import css from "./RegisterForm.module.css";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { Navigate } from "react-router-dom";
 
 export default function RegisterForm() {
+  const isLoggedIn = useSelector(selectIsLoggedIn)
   const dispatch = useDispatch();
   const handleSubmit = (values, actions) => {
     console.log(values);
@@ -11,7 +14,7 @@ export default function RegisterForm() {
     actions.resetForm();
   };
 
-  return (
+  return ( isLoggedIn ? <Navigate to="/contacts" /> :
     <Formik
       initialValues={{
         name: "",
