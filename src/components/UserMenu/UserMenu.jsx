@@ -13,7 +13,7 @@ export default function UserMenu() {
   return (
     <div className={css.menu}>
       <p>Welcome, {name}!</p>
-      <button onClick={hendleClick}>LogOut</button>
+      <button type="button" onClick={hendleClick}>LogOut</button>
     </div>
   );
 }
