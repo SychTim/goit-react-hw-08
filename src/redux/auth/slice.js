@@ -14,7 +14,7 @@ const initialState = {
 };
 
 const slice = createSlice({
-  name: "contacts",
+  name: "auth",
   initialState,
   extraReducers: (builder) => {
     builder
@@ -23,39 +23,32 @@ const slice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(register.rejected, (state, action) => {
+      .addCase(register.rejected, (_, action) => {
         console.log(action.payload);
+        window.alert("Error!");
       })
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(login.rejected, (state, action) => {
+      .addCase(login.rejected, (_, action) => {
         console.log(action);
+        window.alert("Wrong login or password!");
       })
       .addCase(logout.fulfilled, () => {
         return initialState;
+      })
+      .addCase(logout.rejected, (_, action) => {
+        console.log(action);
+        window.alert("Error!");
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isRefreshing = false;
         state.isLoggedIn = true;
-      })
+      });
   },
 });
 
 export default slice.reducer;
-
-// export const selectLoading = (state) => state.contacts.loading;
-
-// export const selectError = (state) => state.contacts.error;
-
-// export const selectFilteredContacts = createSelector(
-//   [selectContacts, selectFilter],
-//   (contacts, filter) => {
-//     return contacts.filter((contact) =>
-//       contact.name.toLowerCase().includes(filter.toLowerCase())
-//     );
-//   }
-// );

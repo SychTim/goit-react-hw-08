@@ -12,7 +12,7 @@ import {
 } from "redux-persist";
 import filtersReduser from "./filters/slice";
 import contactsReduser from "./contacts/slice";
-import authReduser from "./auth/slice"
+import authReduser from "./auth/slice";
 
 const persistConfig = {
   key: "jwt-token",
