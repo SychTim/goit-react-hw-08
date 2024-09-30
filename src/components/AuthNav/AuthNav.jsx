@@ -1,11 +1,21 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import css from "./AuthNav.module.css";
 
 export default function AuthNav() {
+  const getNavClass = (prop) => {
+    console.log(prop.isActive ? css.active : css.noActive);
+    
+    return prop.isActive ? css.active : css.noActive;
+  };
+
   return (
     <div className={css.box}>
-      <Link to="/register">Register</Link>
-      <Link to="/logIn">Log in</Link>
+      <NavLink to="/register" className={getNavClass}>
+        Register
+      </NavLink>
+      <NavLink to="/logIn" className={getNavClass}>
+        Log in
+      </NavLink>
     </div>
   );
 }

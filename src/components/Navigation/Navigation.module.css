@@ -3,3 +3,11 @@
     align-items: center;
     gap: 20px;
 }
+
+.noActive {
+    color: white;
+}
+
+.active {
+    color: red;
+}
